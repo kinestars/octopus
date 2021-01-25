@@ -1,6 +1,6 @@
 import keras.backend as K
 from keras.engine.topology import Layer
-from keras.layers import initializers, activations
+from keras import initializers, activations
 from .util import sparse_dot_adj_batch
 
 

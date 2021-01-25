@@ -43,7 +43,7 @@ from __future__ import print_function
 import sys
 import numpy as np
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 from .batch_lbs import batch_rodrigues, batch_global_rigid_transformation
 
 if sys.version_info[0] == 3:
@@ -78,7 +78,7 @@ class SMPL(object):
             dtype=dtype,
             trainable=False)
         # Size of mesh [Number of vertices, 3]
-        self.size = [self.v_template.shape[0].value, 3]
+        self.size = [self.v_template.shape[0], 3]
         self.num_betas = dd['shapedirs'].shape[-1]
         # Shape blend shape basis: 6980 x 3 x 10
         # reshaped to 6980*30 x 10, transposed to 10x6980*3

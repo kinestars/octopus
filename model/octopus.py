@@ -287,7 +287,7 @@ class Octopus(object):
             self.opt_pose_model.fit(
                 data, supervision,
                 batch_size=1, epochs=1, verbose=0,
-                callbacks=[LambdaCallback(on_batch_end=lambda e, l: pbar.update(1))]
+                callbacks=[LambdaCallback(on_batch_end=lambda e, logs: pbar.update(1))]
             )
 
     def opt_shape(self, segmentations, joints_2d, face_kps, opt_steps):
@@ -326,7 +326,7 @@ class Octopus(object):
             self.opt_shape_model.fit(
                 data, supervision,
                 batch_size=1, epochs=1, verbose=0,
-                callbacks=[LambdaCallback(on_batch_begin=lambda e, l: pbar.update(1))]
+                callbacks=[LambdaCallback(on_batch_begin=lambda e, logs: pbar.update(1))]
             )
 
     def predict(self, segmentations, joints_2d):
