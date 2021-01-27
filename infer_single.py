@@ -45,6 +45,22 @@ def main(weights, name, segm_dir, pose_dir, out_dir, opt_pose_steps, opt_shape_s
     print('Estimating shape...')
     pred = model.predict(segmentations, joints_2d)
 
+    width= 1080
+    height = 1080
+    camera_c = [540.0, 540.0]
+    camera_f = [1080, 1080]
+    vertices = pred['vertices']
+    data_to_save = {
+        'width':width,
+        'camera_c':camera_c,
+        'vertices':vertices,
+        'camera_f':camera_f, 
+        'height':height
+    }
+    pickle_out = open("frame_data.pkl","wb")
+    pickle.dump(data_to_save, pickle_out, 2)
+    pickle_out.close()
+
     write_mesh('{}/{}.obj'.format(out_dir, name), pred['vertices'][0], pred['faces'])
 
     print('Done.')

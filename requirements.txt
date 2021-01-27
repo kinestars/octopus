@@ -2,3 +2,4 @@ scipy>=1.0.0
 numpy>=1.16
 keras==2.3.1
 tensorflow_gpu==2.1.0
+chumpy==0.70
