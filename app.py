@@ -41,8 +41,8 @@ def generate_pkl(user_id):
     try:
         # Run 
         os.system(
-            # f"bash run_demo.sh"
-            f"echo 'Run Octopus'"
+            "bash run_demo.sh {}".format(user_id)
+            # f"echo 'Run Octopus'"
         )
         return True
     except Exception as e:
@@ -64,4 +64,4 @@ def run_octopus(user_id):
 
 # Start App
 if __name__ == "__main__":
-    app.run(host="0.0.0.0" , port=5003) 
+    app.run(host="0.0.0.0" , port=5004) 

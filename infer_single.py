@@ -4,7 +4,7 @@ import tensorflow as tf
 # import keras.backend as K
 
 from glob import glob
-
+import pickle
 from lib.io import openpose_from_file, read_segmentation, write_mesh
 from model.octopus import Octopus
 
@@ -57,7 +57,7 @@ def main(weights, name, segm_dir, pose_dir, out_dir, opt_pose_steps, opt_shape_s
         'camera_f':camera_f, 
         'height':height
     }
-    pickle_out = open("frame_data.pkl","wb")
+    pickle_out = open(f"{out_dir}/frame_data.pkl","wb")
     pickle.dump(data_to_save, pickle_out, 2)
     pickle_out.close()
 
