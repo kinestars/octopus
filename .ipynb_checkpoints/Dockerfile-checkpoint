@@ -1,0 +1,17 @@
+FROM ai_base_image:cuda11
+RUN conda install -c conda-forge -y tensorflow==2.1.0
+RUN git clone https://github.com/danhnguyen48/dirt.git
+RUN cd dirt \
+    && rm -rf build \
+    && mkdir build \ 
+    && cd build \
+    && cmake -DOpenGL_GL_PREFERENCE=GLVND -DCMAKE_CUDA_FLAGS='-DNDEBUG' ../csrc
+RUN cd dirt/build \
+    && make -j4
+RUN cd dirt \
+    && ldd dirt/librasterise.so \
+    && cp dirt/librasterise.so librasterise.so \
+    && chmod -R 777 librasterise.so
+RUN cd dirt \
+    && pip install -e . \
+    && python3 tests/square_test.py 
